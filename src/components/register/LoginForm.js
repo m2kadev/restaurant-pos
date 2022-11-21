@@ -25,7 +25,7 @@ const LoginForm = ({setFlipCard}) => {
         dispatch(createUser({username: res.data.user.username, token: res.data.token}))
         navigate('/')
     } catch (error) {
-       //
+       console.log(error)
     }
 
   }

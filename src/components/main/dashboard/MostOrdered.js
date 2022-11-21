@@ -38,7 +38,7 @@ const MostOrdered = () => {
                 dishes?.map(dish => (
                     <div key={dish.id} className="most-ordered-item">
                         <div className="most-ordered-img">
-                            <img src={`http://127.0.0.1:8000/storage/${dish.img}`} alt={dish.title} />
+                            <img src={`https://posapi.naylinaung.asia/storage/${dish.img}`} alt={dish.title} />
                         </div>
                         <div className="most-ordered-info">
                             <p>{dish.title}</p>

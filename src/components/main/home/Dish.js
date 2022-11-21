@@ -27,7 +27,7 @@ const Dish = ({dish, setShowSlide, showSlide}) => {
   return (
     <div className={cart.length === 0 ? 'dish-card dish-card-height': 'dish-card dish-card-small'} onClick={() => handleAddToCart(dish)}>
       <div className="dish-card-image">
-        <img src={`http://127.0.0.1:8000/storage/${dish.img}`} alt={dish.title} />
+        <img src={`https://posapi.naylinaung.asia/storage/${dish.img}`} alt={dish.title} />
       </div>
       <div className="card-info">
         <p className="card-title">

@@ -1,7 +1,8 @@
 import axios from "axios"
+import { APIBASEURL } from "./constants"
 
 const userApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api'
+    baseURL: APIBASEURL
 })
 
 export const createUser = async (user) => {

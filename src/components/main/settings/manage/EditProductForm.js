@@ -179,7 +179,7 @@ const EditProductForm = ({editProductData, setShowEditForm}) => {
                             {
                                 image === '' 
                                 ? 
-                                <img className='edit-img' src={`http://127.0.0.1:8000/storage/${newProductData.img}`} alt={newProductData.title} />
+                                <img className='edit-img' src={`https://posapi.naylinaung.asia/storage/${newProductData.img}`} alt={newProductData.title} />
                                 : 
                                 <p className='file-name'>{image.name}</p>
                             }

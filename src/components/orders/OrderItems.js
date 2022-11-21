@@ -21,7 +21,7 @@ const OrderItems = ({item}) => {
 
         <div className="order-control">
             <div className="order-item-first order-product-wrapper">
-                <img src={`http://127.0.0.1:8000/storage/${item.img}`} alt={item.title} />
+                <img src={`https://posapi.naylinaung.asia/storage/${item.img}`} alt={item.title} />
                 <div className='order-product-info'>
                     <p>{item.title.substring(0, 19)}...</p>
                     <span>${item.price}</span>
