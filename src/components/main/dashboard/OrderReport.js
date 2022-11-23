@@ -4,7 +4,7 @@ import OrderReportTable from './OrderReportTable'
 
 const OrderReport = () => {
   return (
-    <div className='order-report'>
+    <div className='order-report scrollbar-active'>
         <OrderReportHeader />
         <OrderReportTable />
     </div>

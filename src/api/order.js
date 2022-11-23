@@ -9,8 +9,8 @@ export const sendOrder = async ({orderData, config}) => {
     return await orderApi.post('/order', orderData, config)
 }
 
-export const getOrders = async () => {
-    return await (await orderApi.get('/order')).data
+export const getOrders = async (data) => {
+    return await (await orderApi.get('/order', data.queryKey[1])).data
 }
 
 export const getOrderDetails = async (data) => {

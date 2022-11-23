@@ -1,43 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { getOrderDetails, getOrders } from '../../../api/order'
 import { useSelector } from 'react-redux'
+import OrderInfo from './OrderInfo'
+import DishLoading from './DishLoading'
 
 const OrderReportTable = () => {
 
   const user = useSelector(state => state.user.user)
+  const [showOrderDetails, setShowOrderDetails] = useState(false)
+  const [orderId, setOrderId] = useState(0)
   const config = {
     headers: { Authorization: `Bearer ${user.token}` }
   }
 
-  const {data: orders, status: orderStatus} = useQuery('orders', getOrders)
-  const {data: orderDetails, status} = useQuery(['order_details', 1, config], getOrderDetails)
-  
+  const {data: orders, status: orderStatus} = useQuery(['orders', config], getOrders)
+  const { data: orderDetails, status: orderDetailsStatus } = useQuery(['order_details', orderId, config], getOrderDetails)
+
+  let orderReportContent
   if (orderStatus === 'loading') {
-    console.log('loading')
+    orderReportContent = <DishLoading />
   } else if (orderStatus === 'error') {
-    console.log('error')
+    orderReportContent = <p>Cannot get any data</p>
   } else {
-    console.log(orders)
+    orderReportContent = null
   }
 
-
-  if(status === 'loading') {
-    console.log('loading')
-  } else if (status === 'error') {
-    console.log('error')
-  } else {
-    console.log(orderDetails)
+  const handleOrderDetails = (id) => {
+    setShowOrderDetails(true)
+    setOrderId(id)
   }
-
 
   return (
     <div className='order-report-table'>
+        {showOrderDetails ? <OrderInfo setShowOrderDetails={setShowOrderDetails} orderDetails={orderDetails} orderDetailsStatus={orderDetailsStatus} />: null}
         <div className="order-report-table-header">
             <p>Customer</p>
-            <p>Menu</p>
+            <p>Payment Method</p>
             <p>Total Payment</p>
             <p>Status</p>
+        </div>
+
+        <div className="order-reports">
+            {orderReportContent}
+            {
+              orders?.map(order => (
+                <div key={order.id} className='order-report-data' onClick={() => handleOrderDetails(order.id)}>
+                  <p>walk-in</p>
+                  <p>cash</p>
+                  <p>{order.total_amount}</p>
+                  <p className='order-complete'>complete</p>
+                </div>
+              ))
+            }
         </div>
     </div>
   )

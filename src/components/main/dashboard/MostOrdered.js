@@ -3,6 +3,7 @@ import { BsChevronDown } from 'react-icons/bs'
 import { useQuery } from 'react-query'
 import { getProducts } from '../../../api/products'
 import { useSelector } from 'react-redux'
+import DishLoading from './DishLoading'
 
 const MostOrdered = () => {
 
@@ -13,12 +14,13 @@ const MostOrdered = () => {
   
   const {data: dishes, isError, error, isLoading} = useQuery(['products', config], getProducts)
 
+  let content
   if (isError) {
-    console.log(error.message)
+    content = <p>{error.message}</p>
   } else if (isLoading) {
-    console.log('loading')
+    content = <DishLoading />
   } else {
-    console.log('success')
+    content = null
   }
 
   return (
@@ -34,6 +36,7 @@ const MostOrdered = () => {
         </div>
 
         <div className="most-ordered-items scrollbar-active">
+            {content}
             {
                 dishes?.map(dish => (
                     <div key={dish.id} className="most-ordered-item">
