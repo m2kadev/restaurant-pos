@@ -10,7 +10,7 @@ const OrderReportTable = () => {
     headers: { Authorization: `Bearer ${user.token}` }
   }
 
-  const {data: orders, status: orderStatus} = useQuery(['orders', config], getOrders)
+  const {data: orders, status: orderStatus} = useQuery('orders', getOrders)
   const {data: orderDetails, status} = useQuery(['order_details', 1, config], getOrderDetails)
   
   if (orderStatus === 'loading') {
@@ -18,7 +18,7 @@ const OrderReportTable = () => {
   } else if (orderStatus === 'error') {
     console.log('error')
   } else {
-    
+    console.log(orders)
   }
 
 

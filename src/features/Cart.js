@@ -26,8 +26,8 @@ const cartSlice = createSlice({
                         state.items = [...state.items]
                     } else {
                         state.items = [...state.items]
-                        state.items[exist].quantity+=1
-                        state.items[exist].tdsc = state.items[exist].discount * state.items[exist].quantity
+                        state.items[exist].quantity =  parseInt(state.items[exist].quantity) + 1
+                        state.items[exist].tdsc = state.items[exist].discount *  parseInt(state.items[exist].quantity) + 1
                         state.items[exist].subtotal = (state.items[exist].price * state.items[exist].quantity) - state.items[exist].tdsc
                     }
                 
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
             
             state.items = state.items.map(item => {
                 if (item.id === product.id) {
-                    return { ...item, quantity: item.quantity - 1, tdsc: item.discount * (item.quantity - 1), subtotal: (item.price * (item.quantity - 1) ) - (item.discount * (item.quantity - 1))  }
+                    return { ...item, quantity: parseInt(item.quantity) - 1, tdsc: item.discount * (item.quantity - 1), subtotal: (item.price * (item.quantity - 1) ) - (item.discount * (item.quantity - 1))  }
                 } else {
                     return item
                 }
