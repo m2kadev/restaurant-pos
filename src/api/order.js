@@ -5,6 +5,10 @@ const orderApi = axios.create({
     baseURL: APIBASEURL
 })
 
+export const getDashboard = async (data) => {
+    return await (await orderApi.get('/dashboard', data.queryKey[1])).data
+}
+
 export const sendOrder = async ({orderData, config}) => {
     return await orderApi.post('/order', orderData, config)
 }

@@ -1,6 +1,25 @@
 import React from 'react'
+import { useQuery } from 'react-query'
+import { getDashboard } from '../../../api/order'
+import { useSelector } from 'react-redux'
+
 
 const OrderCards = () => {
+  const user = useSelector(state => state.user.user)
+  const config = {
+    headers: { Authorization: `Bearer ${user.token}` }
+  }
+
+  const {data: dashboardDetails, status} = useQuery(['dashboardDetails', config], getDashboard)
+
+  if (status === 'loading') {
+    console.log('loading')
+  } else if (status === 'error') {
+    console.log('error')
+  } else {
+    console.log(dashboardDetails)
+  }
+
   return (
     <div className='order-cards-wrapper'>
         <div className="order-card">
@@ -13,7 +32,7 @@ const OrderCards = () => {
                     <img src='./dash-board/up.svg' alt="up" />
                 </div>
             </div>
-            <p>$123,344,534</p>
+            <p>$ {dashboardDetails?.total_revenue}</p>
             <span>Total Revenue</span>
         </div>
         <div className="order-card">
@@ -26,7 +45,7 @@ const OrderCards = () => {
                     <img src='./dash-board/down.svg' alt="down" />
                 </div>
             </div>
-            <p>23,456</p>
+            <p>{dashboardDetails?.total_dish}</p>
             <span>Total Dish Ordered</span>
         </div>
         <div className="order-card">
@@ -39,7 +58,7 @@ const OrderCards = () => {
                     <img src='./dash-board/up.svg' alt="up" />
                 </div>
             </div>
-            <p>1,234</p>
+            <p>{dashboardDetails?.total_customer}</p>
             <span>Total Customer</span>
         </div>
     </div>
