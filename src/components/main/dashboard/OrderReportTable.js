@@ -48,7 +48,7 @@ const OrderReportTable = () => {
                 <div key={order.id} className='order-report-data' onClick={() => handleOrderDetails(order.id)}>
                   <p>walk-in</p>
                   <p>cash</p>
-                  <p>{order.total_amount}</p>
+                  <p>{order.total_amount - order.total_discount}</p>
                   <p className='order-complete'>complete</p>
                 </div>
               ))
