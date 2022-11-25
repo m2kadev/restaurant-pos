@@ -2365,6 +2365,7 @@ p.order-complete {
 
 .order-item-detail > p:nth-child(3) {
   flex: 0 0 100px;
+  padding-left: 20px;
 }
 
 /* .order-info-items-header > p:first-child,
