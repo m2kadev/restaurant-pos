@@ -48,7 +48,7 @@ const OrderInfo = ({orderDetails, orderDetailsStatus, setShowOrderDetails}) => {
 
                 <div className="order-detail-total">
                     <p>Total Payment</p>
-                    <p>{orderDetails?.order.total_amount} Kyats</p>
+                    <p>{orderDetails?.order.total_amount - orderDetails?.order.total_discount} Kyats</p>
                 </div>
                 </div>
             </div>
